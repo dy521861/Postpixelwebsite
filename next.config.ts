@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
+import { legacyRedirects } from "./content/redirects";
+
+// Only the production deployment on Vercel may be indexed.
+// Preview and local builds send `X-Robots-Tag: noindex` on every response.
+const isProduction = process.env.VERCEL_ENV === "production";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
@@ -11,6 +15,21 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  async redirects() {
+    return legacyRedirects;
+  },
+  async headers() {
+    if (isProduction) return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 };
 
