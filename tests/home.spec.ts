@@ -60,3 +60,26 @@ test.describe("home page", () => {
     await expect(slider).toHaveAttribute("aria-valuenow", "0");
   });
 });
+
+test.describe("hero animation", () => {
+  test("steps advance and can be paused", async ({ page }) => {
+    await page.goto("/");
+    const stage = page.locator("figure").first();
+    await expect(stage).toContainText("Reading your website");
+    await expect(stage).toContainText("Grabbing your job photos", { timeout: 6000 });
+    await page.getByRole("button", { name: "Pause animation" }).click();
+    const frozen = await stage.innerText();
+    await page.waitForTimeout(4000);
+    expect(await stage.innerText()).toBe(frozen);
+  });
+
+  test("reduced motion shows the finished result without animating", async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: "reduce" });
+    const page = await context.newPage();
+    await page.goto("/");
+    const stage = page.locator("figure").first();
+    await expect(stage).toContainText("Scheduling everywhere");
+    await expect(page.getByRole("button", { name: "Pause animation" })).toHaveCount(0);
+    await context.close();
+  });
+});

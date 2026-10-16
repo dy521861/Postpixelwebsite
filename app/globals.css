@@ -82,3 +82,70 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Hero: Pixel stage animations */
+@keyframes pp-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pp-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* items fly toward Pixel (bottom-left) as he "grabs" them */
+@keyframes pp-collect {
+  to {
+    opacity: 0;
+    transform: translate(-140px, 160px) scale(0.25);
+  }
+}
+@keyframes pp-card-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+@keyframes pp-walk {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2.5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(2.5deg);
+  }
+}
+@keyframes pp-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes pp-scan {
+  from {
+    top: 8%;
+  }
+  to {
+    top: 88%;
+  }
+}
+.pp-pop {
+  animation: pp-pop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.pp-card {
+  animation: pp-card-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}

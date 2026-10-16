@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container, Eyebrow } from "@/components/layout/Section";
-import { HeroMedia } from "./HeroMedia";
+import { PixelStage } from "./PixelStage";
 import { hero } from "@/content/home";
 import { site } from "@/content/site";
 
@@ -35,7 +35,7 @@ export function Hero() {
           </div>
           <p className="mt-5 text-sm text-white/50">{hero.note}</p>
         </div>
-        <HeroMedia video={hero.video} />
+        <PixelStage hero={hero} />
       </Container>
     </section>
   );

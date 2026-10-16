@@ -60,8 +60,9 @@ tests/            Playwright: SEO, accessibility (axe), keyboard interactions
 - **Add a trade:** add an entry to `content/trades.ts`. It appears in the strip, the tabs and the footer.
 - **Build a new landing page:** create `app/<path>/page.tsx`, export `metadata = buildMetadata({...})`,
   compose sections from `components/sections`, and set its entry in `content/routes.ts` to `built`.
-- **Add the hero video:** put `hero.mp4`, `hero.webm` and `hero-poster.avif` in `public/media/`, then set
-  `hero.video` in `content/home.ts`. The editor mock disappears automatically.
+- **Hero animation:** `components/sections/PixelStage.tsx`. The step cards are HTML, and their text lives in `hero.steps`
+  and `hero.demo` in `content/home.ts`. To swap the still Pixel for animated clips, set `hero.pixel.video`
+  (see `docs/hero-video-brief.md`).
 - **Add partner logos:** drop SVGs in `public/media/partners/` and set `logo` in `content/social-proof.ts`.
 
 ## Design rules
@@ -71,7 +72,9 @@ Direction: "modern tool, built for the person in the truck." Sharp SaaS polish, 
   On light sections use lime only as a fill with black text, or `text-lime-ink` (#3F6212).
 - Rhythm alternates dark (`Section tone="dark"`) and warm paper sections.
 - The 3×3 pixel "x" (`PixelMark`) is the signature motif: eyebrows, bullets, slider handle. Use it lightly.
-- Real posts, real UI, real owners. No stock models, robots, gradient blobs or "AI sparkle" icons.
+- Real posts, real UI, real owners. No stock models, gradient blobs or "AI sparkle" icons.
+- **Pixel** (the green-and-yellow plush robot) is the brand mascot and the only character on the site.
+  Source art: `brand/pixel/`. Keep him consistent with the character sheet, and don't add other robots or mascots.
 - Copy: plain-spoken and owner-to-owner. Short sentences. "You" voice. No jargon.
 - Accessibility: WCAG 2.2 AA. Keyboard support for every interactive element, visible focus,
   `prefers-reduced-motion` respected, and one `<h1>` per page. Tests run axe on every page.

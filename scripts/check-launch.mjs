@@ -15,8 +15,6 @@ if (/sourceUrl: ""/.test(site)) problems.push("homeownerStat.sourceUrl is empty 
 const pending = (read("content/routes.ts").match(/status: "pending"/g) ?? []).length;
 if (pending) problems.push(`${pending} legacy URL(s) still "pending" in content/routes.ts (build or 301 them)`);
 
-const homeContent = read("content/home.ts");
-if (/src: ""/.test(homeContent)) problems.push("hero video not set in content/home.ts (editor mock is showing)");
 
 const todos = ["content/site.ts", "content/faq.ts", "content/social-proof.ts"].filter((f) => read(f).includes("TODO(founder)"));
 for (const f of todos) problems.push(`unresolved TODO(founder) in ${f}`);

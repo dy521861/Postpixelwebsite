@@ -8,14 +8,44 @@ export const hero = {
   primaryCta: "Start your 7-day free trial",
   secondaryCta: { label: "See real examples", href: "#examples" },
   note: "Set up in about 5 minutes. No design skills needed.",
-  /** Set `src` once the hero video exists in /public/media. */
-  video: {
-    src: "",
-    webm: "",
-    poster: "",
-    description:
-      "A home service owner climbs out of a work van, walks into the house, and the day turns to night. They sit at the kitchen table designing social posts in an editor, then PostPixel fills in a month of finished posts.",
+  /**
+   * Pixel, the PostPixel mascot. Today: a still cut-out with coded motion.
+   * When animated Pixel clips exist (transparent WebM + HEVC .mov for Safari,
+   * see docs/hero-video-brief.md), set `video` and they replace the still.
+   */
+  pixel: {
+    image: "/media/pixel/pixel-front.webp",
+    video: { webm: "", hevc: "" },
   },
+  /** What Pixel does in the hero, in order. Shown in Pixel's speech bubble. */
+  steps: [
+    { key: "website", label: "Reading your website" },
+    { key: "photos", label: "Grabbing your job photos" },
+    { key: "reviews", label: "Pulling your Google reviews" },
+    { key: "posts", label: "Designing your posts" },
+    { key: "schedule", label: "Scheduling everywhere" },
+  ],
+  demo: {
+    url: "northsideheating.com",
+    business: "Northside Heating & Air",
+    colors: ["#1e3a5f", "#0f766e", "#f59e0b", "#ffffff"],
+    services: ["AC repair", "Furnace tune-ups", "Duct cleaning"],
+    rating: "4.9",
+    reviewCount: "212 Google reviews",
+    reviews: [
+      { name: "Maria G.", text: "Showed up on time and had our AC running the same day." },
+      { name: "Tom R.", text: "Honest pricing. They explained everything before starting." },
+    ],
+    schedule: [
+      { platform: "facebook", when: "Mon 7:30 AM" },
+      { platform: "instagram", when: "Tue 6:00 PM" },
+      { platform: "linkedin", when: "Wed 8:15 AM" },
+      { platform: "google", when: "Thu 9:00 AM" },
+    ],
+    done: "30 posts scheduled",
+  },
+  description:
+    "Pixel, the PostPixel robot, reads a home service company's website, picks up its logo and brand colors, grabs job site photos and Google reviews, designs a month of posts, and schedules them to Facebook, Instagram, LinkedIn and Google Business Profile.",
 };
 
 export const problem = {
