@@ -8,6 +8,9 @@ test.describe("home page", () => {
     const html = await res.text();
 
     expect(html).toMatch(/<title>Social Media on Autopilot for Home Service Pros \| PostPixel<\/title>/);
+    // Clarity is production-only. This server is the non-production build.
+    expect(html).not.toContain("clarity.ms");
+    expect(html).not.toContain("googletagmanager.com");
     expect(html).toMatch(/<link rel="canonical" href="https:\/\/www\.postpixel\.ai\/?"/);
     expect(html).toMatch(/<meta name="description" content="[^"]{50,160}"/);
     expect(html.match(/<h1[\s>]/g)?.length).toBe(1);
