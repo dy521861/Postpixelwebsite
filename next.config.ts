@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  skipTrailingSlashRedirect: true,
   async redirects() {
     return legacyRedirects;
   },

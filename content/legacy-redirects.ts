@@ -97,14 +97,23 @@ function escapePath(path: string) {
   return path.replace(/[()]/g, (char) => `\\${char}`);
 }
 
+function encodeParens(path: string) {
+  return path.replaceAll("(", "%28").replaceAll(")", "%29");
+}
+
 function redirect(source: string, destination: string): LegacyRedirect {
   return { source, destination, statusCode: 301 };
 }
 
 export const legacyRedirects: LegacyRedirect[] = [
-  ...blogRedirects.map(([oldSlug, newSlug]) =>
-    redirect(escapePath(`/blog/${oldSlug}`), `/blog/${newSlug}`),
-  ),
+  ...blogRedirects.flatMap(([oldSlug, newSlug]) => {
+    const destination = `/blog/${newSlug}`;
+    const sources = [escapePath(`/blog/${oldSlug}`)];
+    if (oldSlug.includes("(") || oldSlug.includes(")")) {
+      sources.push(`/blog/${encodeParens(oldSlug)}`);
+    }
+    return sources.map((source) => redirect(source, destination));
+  }),
   redirect("/free-tools", "/"),
   redirect("/pixelcards", "/"),
 ];
